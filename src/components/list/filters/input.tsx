@@ -38,6 +38,7 @@ const Input: React.FC<InputProps> = ({ placeholder, label, id }) => {
       <br />
       <input
         type='number'
+        min={0}
         id={id}
         onChange={(e) => {
           setTemp(parseInt(e.target.value));
