@@ -13,6 +13,8 @@ export function AppWrapper({ children }: { children: React.ReactNode }) {
   const [maxPrice, setMaxPrice] = useState(undefined);
   const [openDialog, setOpenDialog] = useState<boolean>(false);
   const [limit, setLimit] = useState<number>(6);
+  const [city, setCity] = useState<string>();
+  const [search, setSearch] = useState<boolean>(false);
   const [otherFilters, setOtherFilters] = useState<string[]>([]);
 
   return (
@@ -30,6 +32,10 @@ export function AppWrapper({ children }: { children: React.ReactNode }) {
         setOpenDialog,
         limit,
         setLimit,
+        city,
+        setCity,
+        search,
+        setSearch,
         otherFilters,
         setOtherFilters,
       }}

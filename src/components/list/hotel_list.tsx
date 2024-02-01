@@ -7,8 +7,16 @@ const HotelList = () => {
   const [listData, setListData] = useState<any>();
   const [isLoading, setIsLoading] = useState<boolean>(true);
 
-  const { sort, setListCount, minPrice, maxPrice, limit, otherFilters } =
-    useAppContext();
+  const {
+    sort,
+    setListCount,
+    minPrice,
+    maxPrice,
+    limit,
+    otherFilters,
+    city,
+    search,
+  } = useAppContext();
 
   useEffect(() => {
     fetch('/api/fetchHotelList/')
@@ -31,6 +39,11 @@ const HotelList = () => {
               a.price > b.price ? -1 : 1
             );
             break;
+          default:
+            processedData = data.listData.data.sort((a: any, b: any) =>
+              a.rating > b.rating ? -1 : 1
+            );
+            break;
         }
 
         if (minPrice > 0 || maxPrice != undefined) {
@@ -47,13 +60,19 @@ const HotelList = () => {
           });
         }
 
+        if (city !== undefined) {
+          processedData = processedData.filter((el: any) => {
+            return city.toLowerCase() == el.city.toLowerCase();
+          });
+        }
+        console.log('hotel');
         setListCount(processedData.length);
         processedData = processedData.slice(0, limit);
         setListData(processedData);
         setIsLoading(false);
         return;
       });
-  }, [sort, minPrice, maxPrice, limit, otherFilters]);
+  }, [sort, minPrice, maxPrice, limit, otherFilters, search]);
 
   if (isLoading) return <p>Loading...</p>;
 

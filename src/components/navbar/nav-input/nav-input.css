@@ -1,1 +1,11 @@
+.cont:hover {
+  font-weight: 600;
+  .nav-input {
+    font-weight: normal;
+    display: block;
+  }
+}
 
+.nav-input {
+  display: none;
+}
