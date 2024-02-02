@@ -18,7 +18,7 @@ export async function GET(request: Request) {
       console.error('Error:', error);
     });
   if (listData) {
-    return NextResponse.json({ listData }, { status: 500 });
+    return NextResponse.json({ listData }, { status: 200 });
   } else {
     return NextResponse.json({ error: 'shit' }, { status: 500 });
   }
